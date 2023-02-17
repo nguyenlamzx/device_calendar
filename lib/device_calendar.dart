@@ -1,5 +1,7 @@
 library device_calendar;
 
+export 'package:timezone/timezone.dart';
+
 export 'src/common/calendar_enums.dart';
 export 'src/common/recurrence_frequency.dart';
 export 'src/models/attendee.dart';
@@ -14,4 +16,3 @@ export 'src/models/platform_specifics/ios/attendance_status.dart';
 export 'src/models/platform_specifics/android/attendee_details.dart';
 export 'src/models/platform_specifics/android/attendance_status.dart';
 export 'src/device_calendar.dart';
-export 'package:timezone/timezone.dart';

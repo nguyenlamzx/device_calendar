@@ -1,40 +1,45 @@
 import 'dart:io';
 
-import 'package:collection/collection.dart';
-import 'package:device_calendar/device_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'package:collection/collection.dart';
 import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:intl/intl.dart';
 
+import 'package:device_calendar/device_calendar.dart';
+
 import '../date_time_picker.dart';
 import '../recurring_event_dialog.dart';
+
 import 'event_attendee.dart';
 import 'event_reminders.dart';
 
 enum RecurrenceRuleEndType { Indefinite, MaxOccurrences, SpecifiedEndDate }
 
 class CalendarEventPage extends StatefulWidget {
-  late final Calendar _calendar;
-  final Event? _event;
-  final RecurringEventDialog? _recurringEventDialog;
+  final Calendar calendar;
+  final Event? event;
+  final RecurringEventDialog? recurringEventDialog;
 
-  CalendarEventPage(this._calendar, [this._event, this._recurringEventDialog]);
+  const CalendarEventPage(
+    this.calendar, [
+    this.event,
+    this.recurringEventDialog,
+  ]);
 
   @override
-  _CalendarEventPageState createState() {
-    return _CalendarEventPageState(_calendar, _event, _recurringEventDialog);
-  }
+  _CalendarEventPageState createState() => _CalendarEventPageState();
 }
 
 class _CalendarEventPageState extends State<CalendarEventPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  final Calendar _calendar;
+  late Calendar _calendar;
 
-  Event? _event;
+  late Event? _event;
   late DeviceCalendarPlugin _deviceCalendarPlugin;
-  final RecurringEventDialog? _recurringEventDialog;
+  late RecurringEventDialog? _recurringEventDialog;
 
   TZDateTime? _startDate;
   TimeOfDay? _startTime;
@@ -65,8 +70,11 @@ class _CalendarEventPageState extends State<CalendarEventPage> {
   List<Reminder> _reminders = [];
   String _timezone = 'Etc/UTC';
 
-  _CalendarEventPageState(
-      this._calendar, this._event, this._recurringEventDialog) {
+  _CalendarEventPageState() {
+    _calendar = widget.calendar;
+    _event = widget.event;
+    _recurringEventDialog = widget.recurringEventDialog;
+
     getCurentLocation();
   }
 
@@ -416,7 +424,7 @@ class _CalendarEventPageState extends State<CalendarEventPage> {
                         itemCount: _attendees.length,
                         itemBuilder: (context, index) {
                           return Container(
-                            color: (_attendees?[index].isOrganiser ?? false)
+                            color: (_attendees[index].isOrganiser ?? false)
                                 ? MediaQuery.of(context).platformBrightness ==
                                         Brightness.dark
                                     ? Colors.black26
@@ -721,10 +729,8 @@ class _CalendarEventPageState extends State<CalendarEventPage> {
                                                 _recurrenceFrequency)
                                             .data !=
                                         null
-                                    ? Text(_recurrenceFrequencyToText(
-                                                _recurrenceFrequency)
-                                            .data! +
-                                        ' on the ')
+                                    ? Text(
+                                        '${_recurrenceFrequencyToText(_recurrenceFrequency).data!} on the ')
                                     : const Text('')),
                           ),
                           Padding(

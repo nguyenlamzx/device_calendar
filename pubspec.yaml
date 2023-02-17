@@ -3,13 +3,25 @@ description: A cross platform plugin for modifying calendars on the user's devic
 version: 4.3.0
 homepage: https://github.com/builttoroam/device_calendar/tree/master
 
+publish_to: none
+
 dependencies:
   flutter:
     sdk: flutter
   collection: ^1.16.0
   sprintf: ^7.0.0
   timezone: ^0.9.0
-  flutter_native_timezone: ^2.0.0
+  # flutter_native_timezone: ^2.0.0
+  flutter_native_timezone:
+    git:
+      url: https://github.com/nguyenlamzx/flutter_native_timezone.git
+      ref: 960d3b8d1e98dcc9f938e51fe9e32b755af38f4b
+
+# dependency_overrides:
+#   flutter_native_timezone:
+#     git:
+#       url: https://github.com/nguyenlamzx/flutter_native_timezone.git
+#       ref: 960d3b8d1e98dcc9f938e51fe9e32b755af38f4b
 
 dev_dependencies:
   flutter_test:

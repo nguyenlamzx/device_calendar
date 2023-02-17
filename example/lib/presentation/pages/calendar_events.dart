@@ -1,10 +1,12 @@
 import 'dart:async';
 
-import 'package:device_calendar/device_calendar.dart';
 import 'package:flutter/material.dart';
+
+import 'package:device_calendar/device_calendar.dart';
 
 import '../event_item.dart';
 import '../recurring_event_dialog.dart';
+
 import 'calendar_event.dart';
 
 class CalendarEventsPage extends StatefulWidget {
@@ -158,9 +160,9 @@ class _CalendarEventsPageState extends State<CalendarEventsPage> {
           title: const Text('Warning'),
           content: SingleChildScrollView(
             child: ListBody(
-              children: <Widget>[
-                const Text('This will delete this calendar'),
-                const Text('Are you sure?'),
+              children: const <Widget>[
+                Text('This will delete this calendar'),
+                Text('Are you sure?'),
               ],
             ),
           ),

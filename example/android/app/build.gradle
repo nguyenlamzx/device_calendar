@@ -16,7 +16,7 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion 32
+    compileSdkVersion 33
     ndkVersion '22.1.7171670'
 
     sourceSets {
@@ -54,7 +54,7 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test:runner:1.4.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    // testImplementation 'junit:junit:4.13.2'
+    // androidTestImplementation 'androidx.test:runner:1.4.0'
+    // androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
